@@ -15,9 +15,6 @@ int main(void)
     *list = 1; // This is the same as: list[0] = 1;
     *(list+1) = 2; //same as: list[1] = 2;
     *(list+2) = 3; //same as: list[2] = 3;
-
-    //NOT NECESSARY BECAUSE WE'RE USING REALLOC
-    //int* tmp = malloc(4 * sizeof(int)); //we can't use int* list again because it would leak memory
     
     //In case I need more space in my array
     int* tmp = realloc(list, 4 * sizeof(int));
@@ -28,18 +25,11 @@ int main(void)
         return 1;
     }
     
-    //NOT NECESSARY BECAUSE WE'RE USING REALLOC
-    // for (int i = 0; i < 3; i++)
-    // {
-    //     tmp[i] = list[i]; //allocating the info to the tmp array
-    // }
-    
     list = tmp; //pointing list to the new pointer array
     printf("Address: %p\n", &tmp);
     printf("Address: %p\n", &list);
     tmp[3] = 4;
     
-    //free(list); //freeing the old list pointer
 
     for (int i = 0; i < 4; i++)
     {
